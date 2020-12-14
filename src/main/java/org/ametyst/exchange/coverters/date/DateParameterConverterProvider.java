@@ -1,4 +1,4 @@
-package org.ametyst.exchange;
+package org.ametyst.exchange.coverters.date;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;

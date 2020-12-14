@@ -1,4 +1,4 @@
-package org.ametyst.exchange;
+package org.ametyst.exchange.coverters.date;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.PARAMETER;

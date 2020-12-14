@@ -1,4 +1,4 @@
-package org.ametyst.exchange;
+package org.ametyst.exchange.coverters.date;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,7 +8,7 @@ import javax.ws.rs.ext.ParamConverter;
 
 public class DateParameterConverter implements ParamConverter<Date> {
 
-    public static final String DATE_FORMAT = "yyyy-MM-dd";
+    private static final String DATE_FORMAT = "yyyy-MM-dd";
     final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
 
     @Override

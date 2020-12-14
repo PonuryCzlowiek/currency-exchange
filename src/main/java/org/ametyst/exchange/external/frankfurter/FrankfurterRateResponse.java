@@ -40,10 +40,4 @@ public class FrankfurterRateResponse {
     public void setRates(Map<String, Double> rates) {
         this.rates = rates;
     }
-
-    //    amount	1
-//    base	"EUR"
-//    date	"2020-12-11"
-//    rates
-//    USD	1.2127
 }
