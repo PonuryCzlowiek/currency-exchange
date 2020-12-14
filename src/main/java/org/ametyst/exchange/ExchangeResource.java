@@ -20,23 +20,28 @@ import org.ametyst.exchange.currency.RateService;
 @Path("api")
 public class ExchangeResource {
     @Inject
-    RateService rateService;
+    private RateService rateService;
 
     @GET
     @Produces("application/json")
     @Path("/exchange/{date}")
-    public Response hello(@PathParam("date") String targetDate) throws ParseException, InterruptedException, IOException, URISyntaxException {
+    public Response getByDate(@PathParam("date") @DateFormat Date targetDate) throws InterruptedException, IOException, URISyntaxException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date parse = simpleDateFormat.parse(targetDate);
-        return Response.ok().entity(rateService.getExchangeRateByDate(targetDate).getRate()).build();
+        return Response.ok()
+            .entity(rateService.getExchangeRateByDate(simpleDateFormat.format(targetDate)).getRate())
+            .build();
     }
 
     @GET
     @Produces("application/json")
     @Path("exchange")
     public Response getAll() {
-        List<Rate> all = rateService.getAll();
-        List<Rate> collect = all.stream().sorted(Comparator.comparing(Rate::getDate)).collect(Collectors.toList());
-        return Response.ok().entity(collect).build();
+        return Response.ok()
+            .entity(rateService
+                .getAll()
+                .stream()
+                .sorted(Comparator.comparing(Rate::getDate))
+                .collect(Collectors.toList()))
+            .build();
     }
 }

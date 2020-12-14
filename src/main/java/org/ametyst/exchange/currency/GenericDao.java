@@ -6,7 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 public class GenericDao<T> {
-                                     List<T> list = new LinkedList<>();
+
+    List<T> list = new LinkedList<>();
     @PersistenceContext(unitName = "pu")
     EntityManager entityManager;
 
