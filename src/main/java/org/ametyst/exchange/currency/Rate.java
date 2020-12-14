@@ -14,6 +14,7 @@ public class Rate {
     private UUID id;
     private String from;
     private String to;
+    private Double rate;
     private Date date;
     private Date searchTimestamp;
 
@@ -39,6 +40,14 @@ public class Rate {
 
     public void setTo(String to) {
         this.to = to;
+    }
+
+    public Double getRate() {
+        return rate;
+    }
+
+    public void setRate(Double rate) {
+        this.rate = rate;
     }
 
     public Date getDate() {

@@ -1,17 +1,18 @@
 package org.ametyst.exchange.currency;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 public class GenericDao<T> {
-
+                                     List<T> list = new LinkedList<>();
     @PersistenceContext(unitName = "pu")
     EntityManager entityManager;
 
     T save(T object) {
 //        entityManager.persist(object);
+        list.add(object);
         return object;
     }
 
@@ -22,6 +23,6 @@ public class GenericDao<T> {
 //        CriteriaQuery<T> all = cq.select(rootEntry);
 //        TypedQuery<T> allQuery = entityManager.createQuery(all);
 //        return allQuery.getResultList();
-        return new ArrayList<>();
+        return list;
     }
 }

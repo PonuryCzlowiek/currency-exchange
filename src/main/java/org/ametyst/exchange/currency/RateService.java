@@ -23,17 +23,19 @@ public class RateService {
     ObjectMapper objectMapper = new ObjectMapper();
     HttpClient httpClient = HttpClient.newBuilder().build();
 
-    public Rate getExchangeRateByDate(Date date) throws URISyntaxException, IOException, InterruptedException {
+    public Rate getExchangeRateByDate(String dateAsString) throws URISyntaxException, IOException, InterruptedException {
         HttpRequest httpRequest = HttpRequest.newBuilder()
             .GET()
-            .uri(new URI("https://api.frankfurter.app/latest?from=EUR&to=USD"))
+            .uri(new URI("https://api.frankfurter.app/" + dateAsString + "?from=EUR&to=USD"))
             .build();
         HttpResponse<byte[]> send = httpClient.send(httpRequest, BodyHandlers.ofByteArray());
         FrankfurterRateResponse frankfurterRateResponse = objectMapper.readerFor(FrankfurterRateResponse.class).readValue(send.body());
         Rate rate = new Rate();
         rate.setFrom(frankfurterRateResponse.getBase());
+        rate.setTo("USD");
         rate.setDate(frankfurterRateResponse.getDate());
         rate.setSearchTimestamp(new Date());
+        rate.setRate(frankfurterRateResponse.getRates().get("USD"));
         rateDao.save(rate);
         return rate;
     }
