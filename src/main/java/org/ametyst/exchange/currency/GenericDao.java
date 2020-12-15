@@ -11,12 +11,12 @@ import javax.persistence.criteria.Root;
 public class GenericDao<T> {
     private final Class<T> entityClass;
 
+    @PersistenceContext(unitName = "pu")
+    EntityManager entityManager;
+
     GenericDao(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
-
-    @PersistenceContext(unitName = "pu")
-    EntityManager entityManager;
 
     T save(T object) {
         entityManager.persist(object);
