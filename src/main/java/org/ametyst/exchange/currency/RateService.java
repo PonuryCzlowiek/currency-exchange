@@ -1,19 +1,13 @@
 package org.ametyst.exchange.currency;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import org.ametyst.exchange.external.frankfurter.FrankfurterApiCaller;
 import org.ametyst.exchange.external.frankfurter.FrankfurterRateResponse;
 
 @Stateless
@@ -23,17 +17,10 @@ public class RateService {
 
     @Inject
     private RateDao rateDao;
-
-    private final ObjectMapper objectMapper = new ObjectMapper();
-    private final HttpClient httpClient = HttpClient.newBuilder().build();
+    private final FrankfurterApiCaller frankfurterApiCaller = new FrankfurterApiCaller();
 
     public Rate getExchangeRateByDate(String dateAsString) throws URISyntaxException, IOException, InterruptedException {
-        HttpRequest httpRequest = HttpRequest.newBuilder()
-            .GET()
-            .uri(new URI("https://api.frankfurter.app/" + dateAsString + "?from=" + FROM + "&to=" + TO))
-            .build();
-        HttpResponse<InputStream> httpResponse = httpClient.send(httpRequest, BodyHandlers.ofInputStream());
-        FrankfurterRateResponse frankfurterRateResponse = objectMapper.readerFor(FrankfurterRateResponse.class).readValue(httpResponse.body());
+        FrankfurterRateResponse frankfurterRateResponse = frankfurterApiCaller.getFrankfurterRateResponse(dateAsString, FROM, TO);
         Rate rate = getRate(frankfurterRateResponse);
         rateDao.save(rate);
         return rate;
