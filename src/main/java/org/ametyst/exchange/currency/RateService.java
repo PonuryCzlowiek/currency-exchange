@@ -11,6 +11,7 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import org.ametyst.exchange.external.frankfurter.FrankfurterRateResponse;
@@ -48,7 +49,14 @@ public class RateService {
         return rate;
     }
 
-    public List<Rate> getAll() {
+    private List<Rate> getAll() {
         return rateDao.getAll();
+    }
+
+    public List<RateDto> getAllAsDtos() {
+        return getAll()
+            .stream()
+            .map(r -> new RateDto(r.getRate(), r.getRateDate(), r.getSearchTimestamp()))
+            .collect(Collectors.toList());
     }
 }

@@ -35,10 +35,7 @@ public class ExchangeResource {
     @Path("exchange")
     public Response getAll() {
         return Response.ok()
-            .entity(rateService.getAll()
-                .stream()
-                .map(r -> new RateDto(r.getRate(), r.getRateDate(), r.getSearchTimestamp()))
-                .collect(Collectors.toList()))
+            .entity(rateService.getAllAsDtos())
             .build();
     }
 }

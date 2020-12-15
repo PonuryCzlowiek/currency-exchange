@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class DateParameterConverterTest {
 
-    DateParameterConverter dateParameterConverter = new DateParameterConverter();
+    private DateParameterConverter dateParameterConverter = new DateParameterConverter();
 
     @Test
     void shouldParseStringToDate() {
