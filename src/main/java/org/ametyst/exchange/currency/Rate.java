@@ -1,5 +1,6 @@
 package org.ametyst.exchange.currency;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
 import java.util.UUID;
 import javax.persistence.Column;
