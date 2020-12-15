@@ -1,13 +1,13 @@
 package org.ametyst.exchange.coverters.date;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Date;
 import org.junit.jupiter.api.Test;
 
 class DateParameterConverterTest {
 
-    private DateParameterConverter dateParameterConverter = new DateParameterConverter();
+    private final DateParameterConverter dateParameterConverter = new DateParameterConverter();
 
     @Test
     void shouldParseStringToDate() {
