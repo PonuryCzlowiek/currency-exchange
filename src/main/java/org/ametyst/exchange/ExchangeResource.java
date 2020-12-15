@@ -27,7 +27,7 @@ public class ExchangeResource {
     public Response getByDate(@PathParam("date") @DateFormat Date targetDate) throws InterruptedException, IOException, URISyntaxException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return Response.ok()
-            .entity(rateService.getExchangeRateByDate(simpleDateFormat.format(targetDate)).getCurrency_rate())
+            .entity(rateService.getExchangeRateByDate(simpleDateFormat.format(targetDate)).getRate())
             .build();
     }
 
@@ -39,7 +39,7 @@ public class ExchangeResource {
             .entity(rateService
                 .getAll()
                 .stream()
-                .sorted(Comparator.comparing(Rate::getSearch_date))
+                .sorted(Comparator.comparing(Rate::getSearchDate))
                 .collect(Collectors.toList()))
             .build();
     }

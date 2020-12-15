@@ -14,11 +14,16 @@ public class Rate {
     @Id
     @Column(length = 255)
     private String id;
-    private String from_currency;
-    private String to_currency;
-    private Double currency_rate;
-    private Date search_date;
-    private Date search_timestamp;
+    @Column(name = "from_currency")
+    private String from;
+    @Column(name = "to_currency")
+    private String to;
+    @Column(name = "currency_rate")
+    private Double rate;
+    @Column(name = "search_date")
+    private Date searchDate;
+    @Column(name = "search_timestamp")
+    private Date searchTimestamp;
 
     public Rate() {
         id = UUID.randomUUID().toString();
@@ -32,43 +37,43 @@ public class Rate {
         return id;
     }
 
-    public String getFrom_currency() {
-        return from_currency;
+    public String getFrom() {
+        return from;
     }
 
-    public void setFrom_currency(String from) {
-        this.from_currency = from;
+    public void setFrom(String from) {
+        this.from = from;
     }
 
-    public String getTo_currency() {
-        return to_currency;
+    public String getTo() {
+        return to;
     }
 
-    public void setTo_currency(String to) {
-        this.to_currency = to;
+    public void setTo(String to) {
+        this.to = to;
     }
 
-    public Double getCurrency_rate() {
-        return currency_rate;
+    public Double getRate() {
+        return rate;
     }
 
-    public void setCurrency_rate(Double rate) {
-        this.currency_rate = rate;
+    public void setRate(Double rate) {
+        this.rate = rate;
     }
 
-    public Date getSearch_date() {
-        return search_date;
+    public Date getSearchDate() {
+        return searchDate;
     }
 
-    public void setSearch_date(Date date) {
-        this.search_date = date;
+    public void setSearchDate(Date date) {
+        this.searchDate = date;
     }
 
-    public Date getSearch_timestamp() {
-        return search_timestamp;
+    public Date getSearchTimestamp() {
+        return searchTimestamp;
     }
 
-    public void setSearch_timestamp(Date searchTimestamp) {
-        this.search_timestamp = searchTimestamp;
+    public void setSearchTimestamp(Date searchTimestamp) {
+        this.searchTimestamp = searchTimestamp;
     }
 }

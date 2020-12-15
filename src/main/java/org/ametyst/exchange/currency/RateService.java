@@ -40,11 +40,11 @@ public class RateService {
 
     private Rate getRate(FrankfurterRateResponse frankfurterRateResponse) {
         Rate rate = new Rate();
-        rate.setFrom_currency(FROM);
-        rate.setTo_currency(TO);
-        rate.setSearch_date(frankfurterRateResponse.getDate());
-        rate.setSearch_timestamp(new Date());
-        rate.setCurrency_rate(frankfurterRateResponse.getRates().get(TO));
+        rate.setFrom(FROM);
+        rate.setTo(TO);
+        rate.setSearchDate(frankfurterRateResponse.getDate());
+        rate.setSearchTimestamp(new Date());
+        rate.setRate(frankfurterRateResponse.getRates().get(TO));
         return rate;
     }
 
