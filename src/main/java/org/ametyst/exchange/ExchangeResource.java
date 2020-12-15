@@ -36,11 +36,7 @@ public class ExchangeResource {
     @Path("exchange")
     public Response getAll() {
         return Response.ok()
-            .entity(rateService
-                .getAll()
-                .stream()
-                .sorted(Comparator.comparing(Rate::getSearchDate))
-                .collect(Collectors.toList()))
+            .entity(rateService.getAll())
             .build();
     }
 }

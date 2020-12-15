@@ -42,7 +42,7 @@ public class RateService {
         Rate rate = new Rate();
         rate.setFrom(FROM);
         rate.setTo(TO);
-        rate.setSearchDate(frankfurterRateResponse.getDate());
+        rate.setRateDate(frankfurterRateResponse.getDate());
         rate.setSearchTimestamp(new Date());
         rate.setRate(frankfurterRateResponse.getRates().get(TO));
         return rate;

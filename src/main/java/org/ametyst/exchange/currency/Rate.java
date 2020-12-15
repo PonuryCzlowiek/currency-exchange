@@ -20,8 +20,8 @@ public class Rate {
     private String to;
     @Column(name = "currency_rate")
     private Double rate;
-    @Column(name = "search_date")
-    private Date searchDate;
+    @Column(name = "rate_date")
+    private Date rateDate;
     @Column(name = "search_timestamp")
     private Date searchTimestamp;
 
@@ -61,12 +61,12 @@ public class Rate {
         this.rate = rate;
     }
 
-    public Date getSearchDate() {
-        return searchDate;
+    public Date getRateDate() {
+        return rateDate;
     }
 
-    public void setSearchDate(Date date) {
-        this.searchDate = date;
+    public void setRateDate(Date date) {
+        this.rateDate = date;
     }
 
     public Date getSearchTimestamp() {
